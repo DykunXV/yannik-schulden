@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yannik's Schulden</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #result {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yannik's Schulden</h1>
+        <p id="result">Deine aktuellen Schulden betragen: <span id="dailyInterest">0</span>€</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Startdatum
+            const startDate = new Date('2024-01-07');
+
+            // Tageszins in Dezimalform (5%)
+            const dailyInterestRate = 0.05;
+
+            // Aktuelles Datum
+            const currentDate = new Date();
+
+            // Berechne die Anzahl der Tage seit dem Startdatum
+            const daysPassed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+
+            // Berechne die Zinsen für heute
+            const dailyInterest = calculateDailyInterest(1064, dailyInterestRate, daysPassed);
+
+            // Zeige das Ergebnis auf der Seite an
+            document.getElementById('dailyInterest').innerText = dailyInterest.toFixed(2);
+        });
+
+        function calculateDailyInterest(principal, rate, time) {
+            // Zinsen berechnen: Zinsen = Kapital * Zinssatz * Zeit
+            const interest = principal * rate * time;
+            return interest;
+        }
+    </script>
+</body>
+</html>
